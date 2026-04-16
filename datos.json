@@ -1,0 +1,7 @@
+[
+  {"id": 101, "nombre": "Sensor_A", "estado": "activo", "valor": 25.5},
+  {"id": 102, "nombre": "Sensor_B", "estado": "inactivo", "valor": 0.0},
+  {"id": 103, "nombre": "Sensor_C", "estado": "activo", "valor": 30.2},
+  {"id": 104, "nombre": "Sensor_D", "estado": "error", "valor": -1.0},
+  {"id": 105, "nombre": "Sensor_E", "estado": "activo", "valor": 22.8}
+]
