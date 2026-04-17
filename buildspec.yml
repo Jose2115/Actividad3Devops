@@ -3,17 +3,17 @@ version: 0.2
 phases:
   build:
     commands:
-      - [cite_start]echo "Construyendo y ejecutando contenedor..." [cite: 8]
+      - echo "Construyendo y ejecutando el contenedor..."
       - docker build -t mi-ejercicio-app .
-      # Ejecutamos con volumen para extraer el log (Requisito Parte I - d) [cite: 6, 7]
+      # Ejecutamos para generar los resultados y el log (Requisito d)
       - docker run --name contenedor-ejercicio -v $(pwd):/app mi-ejercicio-app
   post_build:
     commands:
-      - [cite_start]echo "Subiendo resultados a S3..." [cite: 12]
-      # Solo se ejecutará si el build fue exitoso
-      - [cite_start]aws s3 cp backup.log s3://actividad3-devops/backup.log [cite: 12]
+      - echo "Sincronizando log con S3..."
+      # REEMPLAZA 'tu-nombre-de-bucket' con el nombre real de tu bucket
+      - aws s3 cp backup.log s3://tu-nombre-de-bucket/backup.log
 
 artifacts:
   files:
     - backup.log
-    - [cite_start]resultados.json [cite: 5, 6]
+    - resultados.json
