@@ -11,7 +11,7 @@ phases:
     commands:
       - echo "Sincronizando log con S3..."
       # REEMPLAZA 'tu-nombre-de-bucket' con el nombre real de tu bucket
-      - aws s3 cp backup.log s3://tu-nombre-de-bucket/backup.log
+      - aws s3 cp backup.log s3://actividad3-devops/backup.log
 
 artifacts:
   files:
