@@ -3,17 +3,16 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo "Preparando Docker..."
+      - echo Iniciando sesión en Docker...
   build:
     commands:
-      - echo "Construyendo y ejecutando contenedor..."
-      - docker build -t app.py .
-      - docker run --name contenedor-temporal mi-app-ejercicio
+      - echo Construyendo la imagen Docker...
+      - docker build -t mi-ejercicio-app .
+      - echo Ejecutando el contenedor (Simulación)...
+      - docker run mi-ejercicio-app
   post_build:
     commands:
-      - echo "Extrayendo logs del contenedor..."
-      - docker cp contenedor-temporal:/app/backup.log .
-      - echo "Subiendo log a S3..."
+      - echo Subiendo el log al bucket de S3...
       - aws s3 cp backup.log s3://actividad3-devops/backup.log
 
 artifacts:
