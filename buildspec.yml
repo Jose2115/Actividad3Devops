@@ -1,21 +1,19 @@
 version: 0.2
 
 phases:
-  pre_build:
-    commands:
-      - echo Iniciando sesión en Docker...
   build:
     commands:
-      - echo Construyendo la imagen Docker...
+      - [cite_start]echo "Construyendo y ejecutando contenedor..." [cite: 8]
       - docker build -t mi-ejercicio-app .
-      - echo Ejecutando el contenedor (Simulación)...
-      - docker run mi-ejercicio-app
+      # Ejecutamos con volumen para extraer el log (Requisito Parte I - d) [cite: 6, 7]
+      - docker run --name contenedor-ejercicio -v $(pwd):/app mi-ejercicio-app
   post_build:
     commands:
-      - echo Subiendo el log al bucket de S3...
-      - aws s3 cp backup.log s3://actividad3-devops/backup.log
+      - [cite_start]echo "Subiendo resultados a S3..." [cite: 12]
+      # Solo se ejecutará si el build fue exitoso
+      - [cite_start]aws s3 cp backup.log s3://actividad3-devops/backup.log [cite: 12]
 
 artifacts:
   files:
     - backup.log
-    - resultados.json
+    - [cite_start]resultados.json [cite: 5, 6]
